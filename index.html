@@ -2,42 +2,40 @@
 <html lang="pl-PL">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/main.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rotating box</title>
   </head>
   <body>
-    <div className="center">
-      <div className="content">
-        <h4 className="content_header">404</h4>
-        <p
-          className="content_description"
-        >Nie odnaleziono strony!
+    <div class="center">
+      <div class="content">
+        <h4 class="content_header">404</h4>
+        <p class="content_description">Nie odnaleziono strony!</p>
+        <p class="content_description">
+          Strona nie istnieje lub została przeniesiona.
         </p>
-        <p className="content_description">
-            Strona nie istnieje lub została przeniesiona.
-        </p>
-        <Link to="/" className="link content_link">
-            Wróć na stronę główną
-        </Link>
+        <a href="/" class="content_link">
+          Wróć na stronę główną
+        </a>
       </div>
-      <div className="box_container">
-        <div className="box">
-          <div className="box_side box_side_front">
-            <img
-              src="./img/hh_logo.png"
-              alt="Logo"
-              className="box_logo"
-            />
+      <div class="box_container">
+        <div class="box">
+          <div class="box_side box_side_front">
+            <img src="./assets/images/Logo.png" alt="Logo" class="box_logo" />
           </div>
-          <div className="box_side box_side_back" > </div>
-          <div className="box_side box_side_right"> </div>
-          <div className="box_side box_side_left"> </div>
-          <div className="box_side box_side_top">
-            <div className="box_side box_side_top_part box_side_top_part-right" > </div>
-            <div className="box_side box_side_top_part box_side_top_part-left" > </div>
+          <div class="box_side box_side_back"></div>
+          <div class="box_side box_side_right"></div>
+          <div class="box_side box_side_left"></div>
+          <div class="box_side box_side_top">
+            <div
+              class="box_side box_side_top_part box_side_top_part-right"
+            ></div>
+            <div
+              class="box_side box_side_top_part box_side_top_part-left"
+            ></div>
           </div>
         </div>
       </div>
-    </div></body>
+    </div>
+  </body>
 </html>

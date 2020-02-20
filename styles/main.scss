@@ -1,7 +1,11 @@
 @import './variables.scss';
 @import './mixins.scss';
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
 
 $accent: #006560;
+
+$dark-color: #454545;
+$light-color: #f4f4f4;
 
 $box-size: 20rem;
 $box-side-offset: $box-size * 0.5;
@@ -17,6 +21,18 @@ $box-strong-color: hsl(40, 87%, 65%);
 
 $box-opening-rotation: 150deg;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+  color: $dark-color;
+  background-color: $light-color;
+}
+
 .center {
   @include flex(column, center, center);
   @include centerAbsolutely();
@@ -24,6 +40,27 @@ $box-opening-rotation: 150deg;
   &,
   * {
     box-sizing: border-box;
+  }
+
+  &:hover {
+    .box {
+      transform: rotateX(-25deg);
+
+      &_side_top_part {
+        &-left {
+          transform: rotateY($box-opening-rotation * -1);
+        }
+
+        &-right {
+          transform: translateX($box-size * 0.5) rotateY($box-opening-rotation);
+        }
+      }
+    }
+
+    .content {
+      transform: translateY($content-transition-distance * -1);
+      opacity: 1;
+    }
   }
 }
 
@@ -40,11 +77,11 @@ $box-opening-rotation: 150deg;
     height: 100%;
     transform-style: preserve-3d;
     transform: rotateX(0deg);
-    animation: boxRotating $animation-properties;
+    transition: transform $animation-time ease;
   }
 
   &_logo {
-    width: $box-size * 0.75;
+    width: $box-size * 0.5;
     @include centerAbsolutely();
   }
 
@@ -52,6 +89,7 @@ $box-opening-rotation: 150deg;
     position: absolute;
     width: $box-size;
     height: $box-size;
+    transition: transform $animation-time ease;
 
     &_front {
       background-color: $box-color;
@@ -84,13 +122,11 @@ $box-opening-rotation: 150deg;
         &-left {
           transform: rotateY(0deg);
           transform-origin: center left;
-          animation: leftTopPartOpening $animation-properties;
         }
 
         &-right {
           transform: translateX($box-size * 0.5) rotateY(0deg);
           transform-origin: center right;
-          animation: rightTopPartOpening $animation-properties;
         }
       }
     }
@@ -101,8 +137,7 @@ $box-opening-rotation: 150deg;
   transform: translateY($content-transition-distance * 1.25) scale(0.25);
   text-align: center;
   opacity: 0;
-  animation: contentAppearing $animation-time * 0.75 $animation-time * 0.25 +
-    $animation-delay ease-in-out forwards;
+  transition: all $animation-time * 0.75 ease-in-out;
 
   &_header {
     color: $accent;
@@ -115,7 +150,6 @@ $box-opening-rotation: 150deg;
   &_description,
   &_link {
     font-size: $box-size * 0.0625;
-    // NOTE ~ 1.25rem, gdy pudełko ma 20rem
   }
 
   &_description {
@@ -124,13 +158,31 @@ $box-opening-rotation: 150deg;
   }
 
   &_link {
+    position: relative;
+    display: inline-block;
     margin-top: 0.5em;
-  }
-}
+    color: $accent;
+    font-weight: 500;
+    text-decoration: none;
 
-@keyframes boxRotating {
-  100% {
-    transform: rotateX(-25deg);
+    &::before {
+      $line-height: 0.125rem;
+
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 10%;
+      height: $line-height;
+      background-color: $accent;
+      border-radius: 0.5rem;
+      transition: width 350ms ease;
+    }
+
+    &:hover {
+      &::before {
+        width: 100%;
+      }
+    }
   }
 }
 
