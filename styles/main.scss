@@ -1,0 +1,154 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+$accent: #006560;
+
+$box-size: 20rem;
+$box-side-offset: $box-size * 0.5;
+
+$animation-time: 750ms;
+$animation-delay: 250ms;
+$animation-properties: $animation-time $animation-delay ease-in-out forwards;
+$content-transition-distance: $box-size * 0.25;
+
+$box-color: hsl(40, 85%, 72%);
+$box-dark-color: hsl(40, 53%, 54%);
+$box-strong-color: hsl(40, 87%, 65%);
+
+$box-opening-rotation: 150deg;
+
+.center {
+  @include flex(column, center, center);
+  @include centerAbsolutely();
+
+  &,
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.box {
+  &_container {
+    width: $box-size;
+    height: $box-size;
+    perspective: $box-size * 3;
+  }
+
+  & {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform: rotateX(0deg);
+    animation: boxRotating $animation-properties;
+  }
+
+  &_logo {
+    width: $box-size * 0.75;
+    @include centerAbsolutely();
+  }
+
+  &_side {
+    position: absolute;
+    width: $box-size;
+    height: $box-size;
+
+    &_front {
+      background-color: $box-color;
+      transform: rotateY(0deg) translateZ($box-side-offset);
+    }
+
+    &_back {
+      background-color: $box-strong-color;
+      transform: rotateY(180deg) translateZ($box-side-offset);
+    }
+
+    &_left {
+      background-color: $box-dark-color;
+      transform: rotateY(-90deg) translateZ($box-side-offset);
+    }
+
+    &_right {
+      background-color: $box-dark-color;
+      transform: rotateY(90deg) translateZ($box-side-offset);
+    }
+
+    &_top {
+      transform: rotateX(90deg) translateZ($box-side-offset);
+      transform-style: preserve-3d;
+
+      &_part {
+        width: $box-size * 0.5;
+        background-color: $box-color;
+
+        &-left {
+          transform: rotateY(0deg);
+          transform-origin: center left;
+          animation: leftTopPartOpening $animation-properties;
+        }
+
+        &-right {
+          transform: translateX($box-size * 0.5) rotateY(0deg);
+          transform-origin: center right;
+          animation: rightTopPartOpening $animation-properties;
+        }
+      }
+    }
+  }
+}
+
+.content {
+  transform: translateY($content-transition-distance * 1.25) scale(0.25);
+  text-align: center;
+  opacity: 0;
+  animation: contentAppearing $animation-time * 0.75 $animation-time * 0.25 +
+    $animation-delay ease-in-out forwards;
+
+  &_header {
+    color: $accent;
+    font-size: $box-size * 0.5;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0;
+  }
+
+  &_description,
+  &_link {
+    font-size: $box-size * 0.0625;
+    // NOTE ~ 1.25rem, gdy pudełko ma 20rem
+  }
+
+  &_description {
+    line-height: 130%;
+    margin: 0;
+  }
+
+  &_link {
+    margin-top: 0.5em;
+  }
+}
+
+@keyframes boxRotating {
+  100% {
+    transform: rotateX(-25deg);
+  }
+}
+
+@keyframes leftTopPartOpening {
+  100% {
+    transform: rotateY($box-opening-rotation * -1);
+  }
+}
+
+@keyframes rightTopPartOpening {
+  100% {
+    transform: translateX($box-size * 0.5) rotateY($box-opening-rotation);
+  }
+}
+
+@keyframes contentAppearing {
+  100% {
+    transform: translateY($content-transition-distance * -1);
+    opacity: 1;
+  }
+}

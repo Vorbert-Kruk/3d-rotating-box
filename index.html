@@ -5,5 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rotating box</title>
   </head>
-  <body></body>
+  <body>
+    <div className={styles.center}>
+      <div className={styles.content}>
+        <h4 className={styles.content_header}>404</h4>
+        <p
+          className={styles.content_description}
+        >{`${lang.labels.PageNotFound()}!`}</p>
+        <p className={styles.content_description}>
+          {`${lang.labels.TheSiteDoesNotExistOrHasBeenRelocated()}.`}
+        </p>
+        <Link to="/" className={linkClassName}>
+          {lang.labels.ReturnToTheHomePage()}
+        </Link>
+      </div>
+      <div className={styles.box_container}>
+        <div className={styles.box}>
+          <div className={frontBoxClassName}>
+            <img
+              src="./img/hh_logo.png"
+              alt="Logo"
+              className={styles.box_logo}
+            />
+          </div>
+          <div className={backBoxClassName} />
+          <div className={rightBoxClassName} />
+          <div className={leftBoxClassName} />
+          <div className={topBoxClassName}>
+            <div className={topLeftPartBoxClassName} />
+            <div className={topRightPartBoxClassName} />
+          </div>
+        </div>
+      </div>
+    </div></body>
 </html>
