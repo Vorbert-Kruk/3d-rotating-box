@@ -1,0 +1,18 @@
+$accent: #006560;
+
+$dark-color: #454545;
+$light-color: #f4f4f4;
+
+$box-size: 20rem;
+$box-side-offset: $box-size * 0.5;
+
+$animation-time: 750ms;
+$animation-delay: 250ms;
+$animation-properties: $animation-time $animation-delay ease-in-out forwards;
+$content-transition-distance: $box-size * 0.25;
+
+$box-color: hsl(40, 85%, 72%);
+$box-dark-color: hsl(40, 53%, 54%);
+$box-strong-color: hsl(40, 87%, 65%);
+
+$box-opening-rotation: 150deg;
