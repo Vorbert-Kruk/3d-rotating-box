@@ -2,38 +2,40 @@
 <html lang="pl-PL">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./styles/main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rotating box</title>
   </head>
   <body>
-    <div className={styles.center}>
-      <div className={styles.content}>
-        <h4 className={styles.content_header}>404</h4>
+    <div className="center">
+      <div className="content">
+        <h4 className="content_header">404</h4>
         <p
-          className={styles.content_description}
-        >{`${lang.labels.PageNotFound()}!`}</p>
-        <p className={styles.content_description}>
-          {`${lang.labels.TheSiteDoesNotExistOrHasBeenRelocated()}.`}
+          className="content_description"
+        >Nie odnaleziono strony!
         </p>
-        <Link to="/" className={linkClassName}>
-          {lang.labels.ReturnToTheHomePage()}
+        <p className="content_description">
+            Strona nie istnieje lub została przeniesiona.
+        </p>
+        <Link to="/" className="link content_link">
+            Wróć na stronę główną
         </Link>
       </div>
-      <div className={styles.box_container}>
-        <div className={styles.box}>
-          <div className={frontBoxClassName}>
+      <div className="box_container">
+        <div className="box">
+          <div className="box_side box_side_front">
             <img
               src="./img/hh_logo.png"
               alt="Logo"
-              className={styles.box_logo}
+              className="box_logo"
             />
           </div>
-          <div className={backBoxClassName} />
-          <div className={rightBoxClassName} />
-          <div className={leftBoxClassName} />
-          <div className={topBoxClassName}>
-            <div className={topLeftPartBoxClassName} />
-            <div className={topRightPartBoxClassName} />
+          <div className="box_side box_side_back" > </div>
+          <div className="box_side box_side_right"> </div>
+          <div className="box_side box_side_left"> </div>
+          <div className="box_side box_side_top">
+            <div className="box_side box_side_top_part box_side_top_part-right" > </div>
+            <div className="box_side box_side_top_part box_side_top_part-left" > </div>
           </div>
         </div>
       </div>
